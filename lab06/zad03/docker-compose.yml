@@ -1,0 +1,42 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    container_name: frontend
+    ports:
+      - 8080:8080
+    networks:
+      - frontend_network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - database
+    ports:
+      - 3000:3000
+    networks:
+      - frontend_network
+      - backend_network
+  database:
+    image: mongo
+    container_name: database
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass123
+    ports:
+      - 27017:27017
+    networks:
+      - backend_network
+networks:
+  frontend_network:
+    name: frontend_network
+    driver: bridge
+  backend_network:
+    name: backend_network
+    driver: bridge
