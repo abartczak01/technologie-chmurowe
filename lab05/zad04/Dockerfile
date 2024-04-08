@@ -1,0 +1,17 @@
+ARG PYTHON_VERSION=3.9
+ARG PORT=8080
+
+FROM python:${PYTHON_VERSION}-alpine
+
+ENV PYTHON_VERSION=${PYTHON_VERSION}
+ENV PORT=${PORT}
+
+WORKDIR /myapp
+
+COPY ./myapp /myapp
+
+EXPOSE ${PORT}
+
+VOLUME /data
+
+CMD ["python", "app.py"]
