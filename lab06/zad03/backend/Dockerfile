@@ -1,5 +1,5 @@
 FROM node:latest
-RUN apt update && apt install -y iputils-ping
+# RUN apt update && apt install -y iputils-ping
 WORKDIR /usr/src/app
 
 COPY package*.json ./

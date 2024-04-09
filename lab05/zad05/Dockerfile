@@ -10,6 +10,7 @@ CMD ["npm", "start"]
 
 # Etap 2
 FROM nginx:latest
+RUN rm /etc/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d/
 COPY --from=build /app /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
