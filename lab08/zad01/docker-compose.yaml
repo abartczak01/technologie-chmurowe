@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  lab8zad1:
+    build: .
+    ports:
+      - "8080:5000"
+    command: python3 app.py
